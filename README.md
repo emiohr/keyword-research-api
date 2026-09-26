@@ -4,6 +4,8 @@ Get **Google search volume, keyword difficulty, search intent, CPC and SERP feat
 
 It uses the [**Keyword Research Tool**](https://apify.com/jesting_grass/keyword-research-tool) on Apify. Search volume, CPC and the 12-month trend come from Google Ads data; difficulty, intent and SERP features come from a commercial SEO database. Keywords without data are not charged.
 
+📖 Tutorial: [Keyword research in Python: search volume, difficulty and AI Overviews in bulk](https://dev.to/jesting_grass/keyword-research-in-python-search-volume-difficulty-and-ai-overviews-in-bulk-2026-3kjj)
+
 ## Quick start (Python)
 
 ```bash
