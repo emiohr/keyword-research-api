@@ -2,7 +2,7 @@
 
 Get **Google search volume, keyword difficulty, search intent, CPC and SERP features, including whether Google shows an AI Overview**, for thousands of keywords at once. Generate **related keyword ideas** from any seed. You pay per keyword, with **no $129+/month Ahrefs or Semrush subscription**.
 
-It uses the [**Keyword Research Tool**](https://apify.com/jesting_grass/keyword-research-tool) on Apify. Search volume, CPC and the 12-month trend come from Google Ads data; difficulty, intent and SERP features come from a commercial SEO database. Keywords without data are not charged.
+It uses the [**Keyword Research Tool**](https://apify.com/jesting_grass/keyword-research-tool) on Apify. Search volume, CPC and the 12-month trend come from Google Ads data; difficulty, intent and SERP features come from a commercial SEO data provider that tracks Google results. Keywords without data are not charged.
 
 📖 Tutorial: [Keyword research in Python: search volume, difficulty and AI Overviews in bulk](https://dev.to/jesting_grass/keyword-research-in-python-search-volume-difficulty-and-ai-overviews-in-bulk-2026-3kjj)
 
@@ -29,31 +29,31 @@ Real output (US, September 2026):
 
 | keyword | searchVolume | keywordDifficulty | AI Overview |
 |---|---|---|---|
-| protein powder | 368,000 | 72 | ✅ |
-| standing desk | 135,000 | 74 | — |
-| cold brew coffee | 40,500 | 50 | ✅ |
-| how to make cold brew | 12,100 | 48 | ✅ |
-| keyword research tool | 4,400 | 66 | — |
+| protein powder | 368,000 | 32 | ✅ |
+| standing desk | 135,000 | 38 | — |
+| cold brew coffee | 40,500 | 23 | ✅ |
+| how to make cold brew | 12,100 | 4 | ✅ |
+| keyword research tool | 4,400 | 81 | ✅ |
 
 ## Find easy-win keywords from one seed
 
-[`easy_win_keywords.py`](examples/easy_win_keywords.py) pulls 100 ideas for "cold brew coffee" and keeps those with volume ≥ 500 and difficulty ≤ 40. Real output:
+[`easy_win_keywords.py`](examples/easy_win_keywords.py) pulls 100 ideas for "cold brew coffee", keeps those with volume ≥ 500 and difficulty ≤ 40, and keeps one keyword per group of close variants. Real output:
 
 ```
 Easy wins (volume >= 500, KD <= 40):
-  coffee and cold brew                     vol  40,500  KD 32
-  brew cold brew coffee                    vol  40,500  KD 1
-  cold brew using french press             vol  22,200  KD 35
-  coarse ground coffee cold brew           vol  22,200  KD 15
-  grind for cold brewed coffee             vol  12,100  KD 33
-  cold brew coffee grind                   vol  12,100  KD 18
-  beans for cold brew                      vol   8,100  KD 26
+  cold brew coffee maker                   vol  49,500  KD 1
+  coffee for cold brew                     vol  40,500  KD 23
+  stok cold brew coffee                    vol  40,500  KD 2
+  cold brew coffee from starbucks          vol  33,100  KD 13
+  how make cold brew coffee                vol  27,100  KD 11
+  how to brew cold coffee                  vol  27,100  KD 23
+  nitro cold brew coffee starbucks         vol  27,100  KD 20
   ...
 
-43 of 64 ideas trigger a Google AI Overview
+33 of 100 ideas trigger a Google AI Overview
 ```
 
-Google Ads groups close variants, so "coffee and cold brew" and "brew cold brew coffee" share the volume of "cold brew coffee". Pick one page per group.
+Google Ads reports close variants ("cold brew coffee maker", "coffee cold brew maker") with the same volume, so treat each group as one keyword and write one page for it.
 
 ## Examples
 

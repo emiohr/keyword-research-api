@@ -11,8 +11,14 @@ run = client.actor("jesting_grass/keyword-research-tool").call(run_input={
 })
 ideas = [r for r in client.dataset(run.default_dataset_id).iterate_items() if r.get("source") == "idea"]
 
-easy = sorted((r for r in ideas if (r.get("searchVolume") or 0) >= 500 and (r.get("keywordDifficulty") or 100) <= 40),
-              key=lambda r: -r["searchVolume"])
+easy, groups = [], set()
+for r in sorted(ideas, key=lambda r: -(r.get("searchVolume") or 0)):
+    # Google Ads reports close variants ("cold brew coffee maker" / "coffee cold brew maker") with identical
+    # numbers: keep one keyword per variant group
+    group = (r.get("searchVolume"), r.get("cpc"), r.get("keywordDifficulty"))
+    if (r.get("searchVolume") or 0) >= 500 and (r.get("keywordDifficulty") or 100) <= 40 and group not in groups:
+        groups.add(group)
+        easy.append(r)
 print("Easy wins (volume >= 500, KD <= 40):")
 for r in easy[:10]:
     print(f'  {r["keyword"]:<40} vol {r["searchVolume"]:>7,}  KD {r["keywordDifficulty"]}')
